@@ -1,0 +1,24 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:smoke":"npx playwright test --project=chromium --grep @smoke --reporter=line,allure-playwright",
+    "test:webkit": "npx playwright test --project=webkit --reporter=line,allure-playwright",
+    "test:chromium": "npx playwright test --project=chromium --reporter=line,allure-playwright",
+    "report:html": "playwright show-report",
+    "report:generate":"--clean allure generate allure-results -o allure-report",
+    "report:open":"allure open allure-report",
+    "trace": "playwright show-trace test-results/apiCalls-Intercept-responce-chromium/trace.zip"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.25",
+    "allure": "0.0.0",
+    "allure-playwright": "^2.15.0"
+  }
+}
