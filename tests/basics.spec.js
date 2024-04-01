@@ -73,23 +73,24 @@ test.describe("@Smoke Invalid login", async () => {
   test("Should not login with no credentials", async ({ loginPage }) => {
     await loginPage.clickLoginBtn();
     await expect(loginPage.page).toHaveURL(loginPage.url);
-    await expect(loginPage.errorPhone).toHaveText('Mobile number is required')
-    await expect(loginPage.errorPassword).toHaveText('Password is required')
+    await expect(loginPage.errorPhone).toHaveText("Mobile number is required");
+    await expect(loginPage.errorPassword).toHaveText("Password is required");
   });
   test("Should not login with invalid credentials", async ({ loginPage }) => {
-    await loginPage.doLogin("07914010010", "aaaaaaa")
+    await loginPage.doLogin("07914010010", "aaaaaaa");
     await expect(loginPage.page).toHaveURL(loginPage.url);
-    await expect(loginPage.errorPhone).toHaveText('Oops! Your mobile number is incorrect. Please try again.')
+    await expect(loginPage.errorPhone).toHaveText(
+      "Oops! Your mobile number is incorrect. Please try again."
+    );
   });
   test("Should not login with invalid password", async ({ loginPage }) => {
-    await loginPage.doLogin(testUser[0].phoneNumber, "aaaaaaa")
+    await loginPage.doLogin(testUser[0].phoneNumber, "aaaaaaa");
     await expect(loginPage.page).toHaveURL(loginPage.url);
-    await expect(loginPage.errorPassword).toHaveText('Oops! Your password is incorrect. Please try again.')
+    await expect(loginPage.errorPassword).toHaveText(
+      "Oops! Your password is incorrect. Please try again."
+    );
   });
 });
-
-
-
 
 
 

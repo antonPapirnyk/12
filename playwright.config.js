@@ -1,6 +1,9 @@
 // @ts-check
 const { defineConfig, devices, chromium } = require("@playwright/test");
+const { expect } = require('@playwright/test');
+const { default: playwrightApiMatchers } = require('odottaa');
 
+expect.extend(playwrightApiMatchers);
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -28,14 +31,17 @@ module.exports = defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
     projects: [
+      {
+        name: "setup",
+        testMatch: /,*\.setup\.js/,
+      },
       {
         name: "chromium",
         use: {
           ...devices["Desktop Chrome"],
         },
+       // dependencies: ['setup']
       },
       // {
       //   name: "webkit",
