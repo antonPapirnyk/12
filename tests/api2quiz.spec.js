@@ -1,7 +1,8 @@
 const { test, expect, request } = require("@playwright/test");
 const {
   RegulatoryBodyBuilder,
-} = require("./utils.js/bilders/regulatoryBodyBuilder");
+} = require("./utils/builders/regulatoryBodyBuilder");
+const { RoleBuilder } = require("./utils/builders/roleBuilder");
 
 test("Send api request and log responce", async ({ request }) => {
   const response = await request.post(
@@ -32,5 +33,21 @@ test.only("Should create regBody via API using builder", async ({
     }
   );
   const body = await responce.json();
-  console.log(body.id);
+  console.log(typeof body.id);
+
+  const role = new RoleBuilder()
+    .setName("123")
+    .setRegulatoryBody(body.id)
+    .setStatus("ACTIVE")
+    .build();
+
+  const responceRole = await request.post("http://localhost:3000/v1/roles", {
+    data: role,
+    headers: {
+      authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbGxvQGFwcG9sbG8uY28udWsiLCJyb2xlIjoiQ1JNX0FETUlOIiwic3ViIjoiNjVhOTJjMjJmN2Q0ZTVlZmYxODZmNjk5IiwiaWF0IjoxNzExOTk1Mjc4LCJleHAiOjE3MTI2MDAwNzh9.gOixZ2PJ3NKRmthQuMdZERhBf3F67vF_gd8WuoZha1I",
+    },
+  });
+  const bodyRole = await responceRole.json();
+  console.log(bodyRole);
 });
