@@ -1,4 +1,4 @@
-import {test } from "../fixtures/fixturePages"
+import {test } from "../../fixtures/fixturePages"
 
 const loginPayload = { phoneNumber: "07914000000", password: "admin123" };
 

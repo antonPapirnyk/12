@@ -1,4 +1,4 @@
-import { BasePage } from "../basePage";
+import { BasePage } from "../../pages/basePage";
 
 class MenuPage extends BasePage{
     constructor(){

@@ -1,6 +1,6 @@
 export class RegulatoryBodyBuilder{
     regBody = {
-        url: "https://beta-crm.appollo.co.uk/"
+        url: "https://example.com.ua"
     }
     setName(name){
         this.regBody.name = name

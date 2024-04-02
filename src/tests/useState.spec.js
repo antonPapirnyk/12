@@ -1,5 +1,5 @@
 const { expect } = require("@playwright/test");
-import { test } from "../fixtures/fixturePages";
+import { test } from "../../../fixtures/fixturePages";
 
 test.describe("@Loggedin Shoul use state file and kepp user logedin", async () => {
   test.use({ storageState: "./fixtures/user.json" });

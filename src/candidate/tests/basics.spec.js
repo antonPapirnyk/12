@@ -1,6 +1,6 @@
 import { test } from "../fixtures/fixturePages.js";
 import { expect } from "@playwright/test";
-const testUser = require("./utils.js/loginTestData.json");
+const testUser = require("./utils/loginTestData.json");
 
 test.beforeEach(async ({ loginPage }) => {
   await loginPage.goTo();

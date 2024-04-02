@@ -1,7 +1,8 @@
 // @ts-check
 const { defineConfig, devices, chromium } = require("@playwright/test");
-const { expect } = require('@playwright/test');
-const { default: playwrightApiMatchers } = require('odottaa');
+const { expect } = require("@playwright/test");
+const { default: playwrightApiMatchers } = require("odottaa");
+require('dotenv').config()
 
 expect.extend(playwrightApiMatchers);
 /**
@@ -14,7 +15,7 @@ expect.extend(playwrightApiMatchers);
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
-  testDir: "./tests",
+  testDir: "./src/tests/crmTests",
   timeout: 30000,
   expect: {
     timeout: 5000,
@@ -22,7 +23,10 @@ module.exports = defineConfig({
   //fullyParallel: false,
   reporter: "allure-playwright",
   use: {
-    baseURL: 'https://beta-candidate.appollo.co.uk/',
+    baseURL:
+      process.env.LOCAL === "1"
+        ? "http://localhost:3001/"
+        : "https://beta-candidmate.appollo.co.uk/",
     browserName: "chromium",
     headless: false,
     retry: 2,
@@ -31,47 +35,47 @@ module.exports = defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
-    projects: [
-      {
-        name: "setup",
-        testMatch: /,*\.setup\.js/,
+  projects: [
+    {
+      name: "setup",
+      testMatch: /,*\.setup\.js/,
+    },
+    {
+      name: "chromium",
+      use: {
+        ...devices["Desktop Chrome"],
       },
-      {
-        name: "chromium",
-        use: {
-          ...devices["Desktop Chrome"],
-        },
-       // dependencies: ['setup']
-      },
-      // {
-      //   name: "webkit",
-      //   use: {
-      //     browserName: "webkit",
-      //     ...devices["Pixel 4"],
-      //   },
-      // }
+      // dependencies: ['setup']
+    },
+    // {
+    //   name: "webkit",
+    //   use: {
+    //     browserName: "webkit",
+    //     ...devices["Pixel 4"],
+    //   },
+    // }
 
-      /* Test against mobile viewports. */
-      // {
-      //   name: 'Mobile Chrome',
-      //   use: { ...devices['Pixel 5'] },
-      // },
-      // {
-      //   name: 'Mobile Safari',
-      //   use: { ...devices['iPhone 12'] },
-      // },
+    /* Test against mobile viewports. */
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: { ...devices['Pixel 5'] },
+    // },
+    // {
+    //   name: 'Mobile Safari',
+    //   use: { ...devices['iPhone 12'] },
+    // },
 
-      /* Test against branded browsers. */
-      // {
-      //   name: 'Microsoft Edge',
-      //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-      // },
-      // {
-      //   name: 'Google Chrome',
-      //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-      // },
-    ],
-  
+    /* Test against branded browsers. */
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    // },
+    // {
+    //   name: 'Google Chrome',
+    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    // },
+  ],
+
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',

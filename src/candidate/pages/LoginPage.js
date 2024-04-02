@@ -1,5 +1,5 @@
-import { HomePage } from "../home/HomePage";
-import { BasePage } from "../../basePage";
+import { HomePage } from "./HomePage";
+import { BasePage } from "../../pages/basePage";
 import {ResetPassword} from "./ResetPasswordPage"
 import { SignUpPage } from "./SignUpPage";
 

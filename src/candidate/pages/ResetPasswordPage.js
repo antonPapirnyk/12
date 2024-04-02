@@ -1,5 +1,5 @@
 //import { HomePage } from "../home/HomePage";
-import { BasePage } from "../../basePage";
+import { BasePage } from "../../pages/basePage";
 
 class ResetPassword extends BasePage{
   constructor(page) {
