@@ -7,6 +7,8 @@ test.beforeEach(async ({ loginPage }) => {
 });
 
 test.describe("@Smoke UI & redirects", async () => {
+  //Basic UI tests on candidate login page
+  //Preconditions: user is unauthorised
   test("Should redirect to sign up page", async ({ loginPage }) => {
     const signUpPage = await loginPage.clickOnSignUp();
     await expect(signUpPage.page.url()).toContain(signUpPage.url);
@@ -22,7 +24,7 @@ test.describe("@Smoke UI & redirects", async () => {
   });
   test("Should check page url", async ({ loginPage }) => {
     await expect(loginPage.page).toHaveURL(
-      "https://beta-candidate.appollo.co.uk/sign-in"
+      "https://beta-candidate. .co.uk/sign-in"
     );
   });
   test("Check app store button", async ({ loginPage }) => {

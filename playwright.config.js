@@ -36,10 +36,10 @@ module.exports = defineConfig({
     video: "retain-on-failure",
   },
   projects: [
-    {
-      name: "setup",
-      testMatch: /,*\.setup\.js/,
-    },
+    // {
+    //   name: "setup",
+    //   testMatch: /,*\.setup\.js/,
+    // },
     {
       name: "chromium",
       use: {

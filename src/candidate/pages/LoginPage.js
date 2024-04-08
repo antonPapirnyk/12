@@ -1,9 +1,9 @@
 import { HomePage } from "./HomePage";
 import { BasePage } from "../../pages/basePage";
-import {ResetPassword} from "./ResetPasswordPage"
+import { ResetPassword } from "./ResetPasswordPage";
 import { SignUpPage } from "./SignUpPage";
 
-class LoginPage extends BasePage{
+class LoginPage extends BasePage {
   constructor(page) {
     super(page);
     this.url = "/sign-in";
@@ -14,11 +14,15 @@ class LoginPage extends BasePage{
     this.smsValidationTitle = page.locator('//h2[text()="Verification"]');
     this.signUpBtn = page.locator('//a [text()="Sign Up"]');
     this.appStoreBtn = page.locator(".app-store-btn");
-    this.googlePlayBtn = page.locator('.google-play-btn')
-    this.forgotPasswordBtn = page.locator('//a[@href ="/reset-password"]')
-    this.eyeBtn = page.locator('//span[@role = "img"]')
-    this.errorPhone = page.locator('//div//label[@title="Mobile Number"]/parent::div/parent::div//div[@role = "alert"]')
-    this.errorPassword = page.locator('//div//label[@title="Password"]/parent::div/parent::div//div[@role = "alert"]')
+    this.googlePlayBtn = page.locator(".google-play-btn");
+    this.forgotPasswordBtn = page.locator('//a[@href ="/reset-password"]');
+    this.eyeBtn = page.locator('//span[@role = "img"]');
+    this.errorPhone = page.locator(
+      '//div//label[@title="Mobile Number"]/parent::div/parent::div//div[@role = "alert"]'
+    );
+    this.errorPassword = page.locator(
+      '//div//label[@title="Password"]/parent::div/parent::div//div[@role = "alert"]'
+    );
   }
 
   async goTo() {
@@ -39,7 +43,7 @@ class LoginPage extends BasePage{
     await this.setPhoneNumber(phoneNumber);
     await this.setPassword(password);
     await this.clickLoginBtn();
-    return new HomePage(this.page)
+    return new HomePage(this.page);
   }
 
   async fillSmsCode() {
@@ -51,8 +55,10 @@ class LoginPage extends BasePage{
   }
   async clickOnSignUp() {
     await this.signUpBtn.click();
-   return new SignUpPage(this.page);
+    
+    return new SignUpPage(this.page);
   }
+
   async clickOnForgotPassword() {
     await this.forgotPasswordBtn.click();
     return new ResetPassword(this.page);

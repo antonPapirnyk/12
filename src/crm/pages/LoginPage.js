@@ -1,10 +1,12 @@
-//import { HomePage } from "./HomePage";
+import { HomePage } from "./homePage";
+import page from "@playwright/test"
+
 //import { BasePage } from "../../pages/basePage";
 
 class CrmLoginPage {
   constructor(page) {
     this.page = page;
-    this.url = "/sign-in";
+    this.url = "http://localhost:3001/sign-in";
     this.email = page.locator("#email");
     this.password = page.locator("#password");
     this.loginButton = page.locator("[type= 'submit']");
@@ -28,6 +30,7 @@ class CrmLoginPage {
     await this.setEmail(email);
     await this.setPassword(password);
     await this.clickLoginBtn();
+    return new HomePage(this.page)
   }
 }
 
